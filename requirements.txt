@@ -1,0 +1,9 @@
+# Huntington's Disease Prediction Web Application
+# Flask-based quantum neural network inference server
+
+Flask>=2.3.0
+flask-cors>=4.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+Pillow>=10.0.0
+numpy>=1.24.0

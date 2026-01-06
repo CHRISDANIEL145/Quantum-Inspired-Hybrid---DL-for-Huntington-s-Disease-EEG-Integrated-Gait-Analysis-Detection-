@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumNeuro Diagnostics | Huntington's Disease AI Detection</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F472B6',
+                        secondary: '#6366F1',
+                        accent: '#FBBF24',
+                        rose: '#F9A8D4',
+                        indigo: '#818CF8',
+                        navy: '#0C0A1D',
+                        deepPurple: '#1A0F2E',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-inter">
+    <!-- Particle Background -->
+    <div id="particles-js" class="particles-container"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 40 40" class="w-10 h-10">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#F472B6" />
+                                    <stop offset="100%" style="stop-color:#6366F1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGrad)" stroke-width="2" />
+                            <circle cx="20" cy="20" r="8" fill="url(#logoGrad)" opacity="0.8" />
+                            <circle cx="20" cy="12" r="3" fill="#FBBF24" />
+                        </svg>
+                    </div>
+                    <span class="font-orbitron text-xl font-bold gradient-text">QuantumNeuro</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-primary transition-colors">Home</a>
+                    <a href="#upload" class="nav-link text-gray-300 hover:text-primary transition-colors">Analyze</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-primary transition-colors">Technology</a>
+                    <a href="#faq" class="nav-link text-gray-300 hover:text-primary transition-colors">FAQ</a>
+                    <button class="btn-glow px-6 py-2 rounded-full text-white font-medium" onclick="scrollToUpload()">
+                        Start Analysis
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="md:hidden text-white" id="mobileMenuBtn">
+                    <i class="material-icons text-3xl">menu</i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden mt-4 pb-4" id="mobileMenu">
+                <div class="flex flex-col gap-4">
+                    <a href="#home" class="text-gray-300 hover:text-primary py-2">Home</a>
+                    <a href="#upload" class="text-gray-300 hover:text-primary py-2">Analyze</a>
+                    <a href="#about" class="text-gray-300 hover:text-primary py-2">Technology</a>
+                    <a href="#faq" class="text-gray-300 hover:text-primary py-2">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="neural-bg"></div>
+
+        <div class="container mx-auto px-4 py-20 pt-32 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8"
+                    data-aos="fade-down">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    <span class="text-sm text-gray-400">Powered by Quantum Neural Networks</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6" data-aos="fade-up">
+                    <span class="gradient-text">Huntington's Disease</span>
+                    <br>
+                    <span class="text-white">AI Diagnosis System</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12" data-aos="fade-up"
+                    data-aos-delay="100">
+                    Advanced quantum-inspired neural network technology for early detection
+                    and analysis of Huntington's disease through MRI brain scan analysis.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                    <button
+                        class="btn-glow px-8 py-4 rounded-xl text-white font-semibold text-lg flex items-center justify-center gap-2"
+                        onclick="scrollToUpload()">
+                        <i class="material-icons">upload_file</i>
+                        Upload MRI Scan
+                    </button>
+                    <button
+                        class="glass-btn px-8 py-4 rounded-xl text-white font-medium flex items-center justify-center gap-2"
+                        onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                        <i class="material-icons">science</i>
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 max-w-4xl mx-auto" data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="stat-card glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="stat-accuracy">95.5%</div>
+                    <div class="text-gray-400">Model Accuracy</div>
+                </div>
+                <div class="stat-card glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="stat-speed">&lt;2s</div>
+                    <div class="text-gray-400">Processing Time</div>
+                </div>
+                <div class="stat-card glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2" id="stat-predictions">0</div>
+                    <div class="text-gray-400">Total Predictions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="material-icons text-gray-500 text-3xl">expand_more</i>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">MRI Scan Analysis</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">
+                    Upload your brain MRI scan for instant AI-powered analysis using our quantum neural network
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Upload Area -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-right">
+                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                        <i class="material-icons text-primary">cloud_upload</i>
+                        Upload MRI Scan
+                    </h3>
+
+                    <!-- Drag & Drop Zone -->
+                    <div class="upload-zone rounded-2xl p-8 text-center cursor-pointer transition-all duration-300"
+                        id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                        <input type="file" id="fileInput" accept="image/*" class="hidden"
+                            onchange="handleFileSelect(event)">
+
+                        <div id="uploadPlaceholder">
+                            <div
+                                class="upload-icon w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center">
+                                <i class="material-icons text-4xl text-primary">medical_services</i>
+                            </div>
+                            <p class="text-white font-medium mb-2">Drag & drop your MRI scan here</p>
+                            <p class="text-gray-500 text-sm">or click to browse</p>
+                            <p class="text-gray-600 text-xs mt-4">Supports: JPG, PNG • Max size: 10MB</p>
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div id="imagePreview" class="hidden">
+                            <img id="previewImg" src="" class="max-h-64 mx-auto rounded-xl mb-4" alt="MRI Preview">
+                            <p class="text-gray-400 text-sm" id="fileName"></p>
+                        </div>
+                    </div>
+
+                    <!-- Analyze Button -->
+                    <button
+                        class="w-full btn-glow py-4 rounded-xl text-white font-semibold mt-6 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        id="analyzeBtn" disabled onclick="analyzeImage()">
+                        <i class="material-icons">psychology</i>
+                        <span id="analyzeBtnText">Analyze with Quantum AI</span>
+                    </button>
+
+                    <!-- Loading Bar -->
+                    <div class="hidden mt-4" id="loadingSection">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-500">Processing...</span>
+                                <span class="text-xs text-gray-500" id="loadingPercent">0%</span>
+                            </div>
+                            <div class="overflow-hidden h-2 text-xs flex rounded-full bg-gray-800">
+                                <div class="loading-bar h-full rounded-full" id="loadingBar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                        <i class="material-icons text-secondary">analytics</i>
+                        Analysis Results
+                    </h3>
+
+                    <!-- Placeholder -->
+                    <div id="resultsPlaceholder" class="text-center py-16">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/5 flex items-center justify-center">
+                            <i class="material-icons text-5xl text-gray-600">insights</i>
+                        </div>
+                        <p class="text-gray-500">Upload an MRI scan to see analysis results</p>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div id="resultsContent" class="hidden">
+                        <!-- Confidence Circle -->
+                        <div class="text-center mb-8">
+                            <div class="confidence-circle mx-auto relative" id="confidenceCircle">
+                                <svg viewBox="0 0 120 120" class="w-40 h-40">
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="#1f2937" stroke-width="8" />
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke-width="8" stroke-linecap="round"
+                                        id="progressCircle" stroke-dasharray="339.292" stroke-dashoffset="339.292"
+                                        transform="rotate(-90 60 60)" />
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-3xl font-bold text-white" id="confidenceValue">0%</span>
+                                    <span class="text-xs text-gray-500">Confidence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prediction Result -->
+                        <div class="result-card rounded-2xl p-6 mb-6" id="resultCard">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-gray-400">Diagnosis</span>
+                                <span class="px-3 py-1 rounded-full text-sm font-medium" id="riskBadge">--</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-2" id="predictionClass">--</div>
+                            <div class="text-gray-500 text-sm" id="riskLevel">--</div>
+                        </div>
+
+                        <!-- Probability Bars -->
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-400">Huntington</span>
+                                    <span class="text-white" id="probHunt">0%</span>
+                                </div>
+                                <div class="h-2 rounded-full bg-gray-800">
+                                    <div class="h-full rounded-full bg-red-500 transition-all duration-500"
+                                        id="probHuntBar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-400">Normal</span>
+                                    <span class="text-white" id="probNormal">0%</span>
+                                </div>
+                                <div class="h-2 rounded-full bg-gray-800">
+                                    <div class="h-full rounded-full bg-green-500 transition-all duration-500"
+                                        id="probNormalBar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Processing Info -->
+                        <div
+                            class="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-800">
+                            <span>Processing time: <span class="text-white" id="processingTime">--</span></span>
+                            <span>Model: Quantum NN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Quantum Neural Technology</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Our system leverages quantum-inspired computing principles for superior pattern recognition
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Superposition -->
+                <div class="tech-card glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="tech-icon w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-pink-500/20">
+                        <i class="material-icons text-3xl text-pink-400">blur_on</i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Quantum Superposition</h3>
+                    <p class="text-gray-500 text-sm">Multi-state feature encoding for parallel pattern analysis</p>
+                </div>
+
+                <!-- Entanglement -->
+                <div class="tech-card glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tech-icon w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-purple-500/20">
+                        <i class="material-icons text-3xl text-purple-400">hub</i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Quantum Entanglement</h3>
+                    <p class="text-gray-500 text-sm">Cross-feature correlation through attention coupling</p>
+                </div>
+
+                <!-- Interference -->
+                <div class="tech-card glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tech-icon w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-pink-500/20">
+                        <i class="material-icons text-3xl text-pink-400">waves</i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Quantum Interference</h3>
+                    <p class="text-gray-500 text-sm">Constructive and destructive feature fusion</p>
+                </div>
+
+                <!-- Measurement -->
+                <div class="tech-card glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tech-icon w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-green-500/20">
+                        <i class="material-icons text-3xl text-green-400">compass_calibration</i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Quantum Measurement</h3>
+                    <p class="text-gray-500 text-sm">Wave function collapse for precise classification</p>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="mt-20 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-white text-center mb-12" data-aos="fade-up">How It Works</h3>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                        <div
+                            class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                            1</div>
+                        <h4 class="text-white font-semibold mb-2">Upload MRI</h4>
+                        <p class="text-gray-500 text-sm">Upload your brain MRI scan in JPG or PNG format</p>
+                    </div>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                            2</div>
+                        <h4 class="text-white font-semibold mb-2">AI Analysis</h4>
+                        <p class="text-gray-500 text-sm">Quantum neural network processes the image</p>
+                    </div>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
+                            3</div>
+                        <h4 class="text-white font-semibold mb-2">Get Results</h4>
+                        <p class="text-gray-500 text-sm">Receive instant diagnosis with confidence score</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 relative">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" data-aos="fade-up">
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+                        <span class="text-white font-medium">What is quantum-inspired AI?</span>
+                        <i class="material-icons text-gray-500 transition-transform">expand_more</i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Quantum-inspired AI uses principles from quantum computing—like
+                            superposition, entanglement, and interference—implemented on classical hardware. This
+                            enables more sophisticated pattern recognition than traditional neural networks.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+                        <span class="text-white font-medium">How accurate is the diagnosis?</span>
+                        <i class="material-icons text-gray-500 transition-transform">expand_more</i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Our model achieves 95.5% accuracy on test data. However, this is a
+                            screening tool and should not replace professional medical diagnosis. Always consult a
+                            healthcare provider.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+                        <span class="text-white font-medium">Is my data secure?</span>
+                        <i class="material-icons text-gray-500 transition-transform">expand_more</i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Yes. All images are processed locally and are not permanently stored.
+                            Your medical data remains private and is deleted immediately after analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="glass-card rounded-2xl p-6 max-w-4xl mx-auto border border-amber-500/30" data-aos="fade-up">
+                <div class="flex items-start gap-4">
+                    <i class="material-icons text-amber-400 text-2xl mt-1">warning</i>
+                    <div>
+                        <h4 class="text-white font-semibold mb-2">Medical Disclaimer</h4>
+                        <p class="text-gray-400 text-sm">
+                            This AI system is designed for research and screening purposes only. It is NOT a substitute
+                            for professional medical diagnosis.
+                            The results should be interpreted by qualified healthcare professionals. Always consult with
+                            a neurologist for proper Huntington's disease diagnosis and treatment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 40 40" class="w-8 h-8">
+                            <defs>
+                                <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#F472B6" />
+                                    <stop offset="100%" style="stop-color:#6366F1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGrad2)" stroke-width="2" />
+                            <circle cx="20" cy="20" r="8" fill="url(#logoGrad2)" opacity="0.8" />
+                        </svg>
+                    </div>
+                    <span class="font-orbitron text-lg font-bold gradient-text">QuantumNeuro</span>
+                </div>
+                <p class="text-gray-500 text-sm">© 2026 QuantumNeuro Diagnostics. Research Use Only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
