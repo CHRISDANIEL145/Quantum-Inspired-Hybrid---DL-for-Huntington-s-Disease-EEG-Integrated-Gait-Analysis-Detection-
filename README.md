@@ -37,7 +37,7 @@ huntington_diagnosis_app/
 ## 🧠 Features
 
 - **Quantum-Inspired AI**: Superposition, Entanglement, Interference, Measurement layers
-- **95.5% Accuracy**: Trained on brain MRI dataset
+- **95.5% Accuracy**: Trained on brain EEG-Integrated Gait dataset
 - **Real-time Analysis**: Upload and get instant results
 - **Modern UI**: Glassmorphism, animations, responsive design
 - **REST API**: `/api/predict`, `/api/status`, `/api/stats`
